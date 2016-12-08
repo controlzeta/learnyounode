@@ -11,9 +11,17 @@
 
 // console.log(result)
 	
+	// var fs = require('fs')
+	// buf = new Buffer(256);
+
+	// buf = fs.readFileSync(process.argv[2])
+
+	// console.log(buf.toString().split('\n').length - 1)
+	
+	
+	
 	var fs = require('fs')
-	buf = new Buffer(256);
-
-	buf = fs.readFileSync(process.argv[2])
-
-	console.log(buf.toString().split('\n').length - 1)
+	fs.readFile(process.argv[2], function (err, data) {
+	  if (err) throw err;
+	  console.log(data.toString('utf8').split('\n').length -1);
+	});
