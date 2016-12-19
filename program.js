@@ -1,14 +1,16 @@
-var mymodule = require('./mymodule')
+var path = require('path');
+var mymodule = require('./mymodule');
+var dir = process.argv[2];
+var filterExtension = process.argv[3];
 
+var callback = function (err, list) {
+    if (err) throw err;
+    list.forEach(function (file) {
+        console.log(file);
+    })
+}
 
-
-
-
-
-
-
-
-
+mymodule(dir, filterExtension, callback);
 
 // console.log(Number(process.argv[2]) + Number(process.argv[3])+ Number(process.argv[4]));  
 // var result = 0
