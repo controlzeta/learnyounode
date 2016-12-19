@@ -1,16 +1,33 @@
-var path = require('path');
-var mymodule = require('./mymodule');
-var dir = process.argv[2];
-var filterExtension = process.argv[3];
+var http = require('http');
 
-var callback = function (err, list) {
-    if (err) throw err;
-    list.forEach(function (file) {
-        console.log(file);
-    })
-}
+var url = process.argv[2];
 
-mymodule(dir, filterExtension, callback);
+http.get(url, function(res) {
+  // console.log("Got response: " + res.statusCode);
+  res.on("data", function (data){
+	  console.log(data.toString("utf8"));
+  });
+}).on('error', function(e) {
+  console.log("Got error: " + e.message);
+});
+
+
+
+
+
+// var path = require('path');
+// var mymodule = require('./mymodule');
+// var dir = process.argv[2];
+// var filterExtension = process.argv[3];
+
+// var callback = function (err, list) {
+    // if (err) throw err;
+    // list.forEach(function (file) {
+        // console.log(file);
+    // })
+// }
+
+// mymodule(dir, filterExtension, callback);
 
 // console.log(Number(process.argv[2]) + Number(process.argv[3])+ Number(process.argv[4]));  
 // var result = 0
